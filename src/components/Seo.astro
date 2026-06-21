@@ -15,6 +15,12 @@ interface Props {
   type?: "website" | "article";
   publishedTime?: string;
   noindex?: boolean;
+  /**
+   * Name used as the <title> suffix. Defaults to "Dom Conte". Pass the formal
+   * form (e.g. `Dominic "Dom" Conte`) on key pages so they also rank for the
+   * full name - see §6/§10 of the brand strategy.
+   */
+  brand?: string;
 }
 
 const {
@@ -25,12 +31,15 @@ const {
   type = "website",
   publishedTime,
   noindex = false,
+  brand = site.name,
 } = Astro.props;
 
-// Full <title>: brand-forward, name first (helps name-search ranking).
+// Full <title>: brand-forward, name first (helps name-search ranking). The
+// homepage default carries both name forms so it ranks under "Dom Conte" and
+// "Dominic Conte" alike.
 const fullTitle = title
-  ? `${title} - ${site.name}`
-  : `${site.name} - ${site.tagline}`;
+  ? `${title} - ${brand}`
+  : `${site.name} (${site.alternateName}) - ${site.tagline}`;
 
 const canonicalURL = new URL(path ?? Astro.url.pathname, site.url).href;
 const imageURL = new URL(image, site.url).href;

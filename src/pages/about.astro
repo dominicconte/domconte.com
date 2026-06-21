@@ -6,6 +6,7 @@ import { site } from "@/config/site";
 
 <BaseLayout
   title="About"
+  brand={`Dominic "Dom" Conte`}
   description="Dominic 'Dom' Conte - legal-tech founder, former real-estate solicitor, and co-founder of Purple. The story of moving from practising law to building AI products lawyers actually use."
   path="/about/"
 >
@@ -26,21 +27,109 @@ import { site } from "@/config/site";
             about what it actually takes to make legal innovation stick.
           </p>
           <p>
-            I didn't start in technology. I trained and practised as a
-            real-estate solicitor, which is where I learned the thing that still
-            drives the work: the gap between how legal services are sold and how
-            the work actually gets done. Lawyers are surrounded by repetitive,
-            high-stakes tasks that software should have solved years ago - and
-            yet most of the tools aimed at them go unused.
+            I've spent most of my career starting things. I co-founded my first
+            company, Varsity Events, at university, then built and sold a B2B
+            health-tech start-up, Fitfix.
+            Law was the chapter in between: I trained at Hogan Lovells and
+            practised as a real-estate solicitor at Gowling WLG - which is where
+            I learned the thing that still drives the work: the gap between how
+            legal services are sold and how the work actually gets done. Lawyers
+            are surrounded by repetitive, high-stakes tasks that software should
+            have solved years ago - and yet most of the tools aimed at them go
+            unused.
           </p>
           <p>
-            That gap is what pulled me out of practice and into building. I
-            wanted to make tools that fee-earners reach for because they're
-            genuinely better, not because they've been told to. Practising law
-            first turned out to be the unfair advantage: I know where the work
-            is painful, where the judgement really lives, and why so many
-            "obvious" products quietly fail to land.
+            That gap pulled me back to building. As Chief Product Officer at
+            Avail, I spent five years building an AI platform for commercial
+            real-estate lawyers, taking it from inception to the majority of the
+            UK's top-100 firms - and today I'm putting those lessons to work at
+            Purple. Practising law first turned out to be the unfair advantage: I
+            know where the work is painful, where the judgement really lives, and
+            why so many "obvious" products quietly fail to land.
           </p>
+
+          <h2>Career so far</h2>
+          <dl class="space-y-6 border-l border-hairline pl-6">
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2025 - now</dt>
+              <dd>
+                <span class="font-semibold text-ink">Co-Founder, Purple</span>
+                <span class="block text-ink/70"
+                  >Legaltech build studio - taking firms from AI strategy to
+                  systems they actually run.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2023 - now</dt>
+              <dd>
+                <span class="font-semibold text-ink"
+                  >LegalTech Startup Mentor, LawtechUK</span
+                >
+                <span class="block text-ink/70"
+                  >Government-backed UK legaltech body - mentoring early-stage
+                  founders.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2019 - 2025</dt>
+              <dd>
+                <span class="font-semibold text-ink"
+                  >Chief Product Officer, Avail</span
+                >
+                <span class="block text-ink/70"
+                  >AI platform for commercial real-estate lawyers - growing it
+                  from inception to most of the UK's top-100 firms.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2015 - 2019</dt>
+              <dd>
+                <span class="font-semibold text-ink"
+                  >Senior Associate, Gowling WLG</span
+                >
+                <span class="block text-ink/70"
+                  >International law firm - advising on commercial real-estate
+                  deals.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2013 - 2015</dt>
+              <dd>
+                <span class="font-semibold text-ink"
+                  >Trainee Solicitor, Hogan Lovells</span
+                >
+                <span class="block text-ink/70"
+                  >Global law firm - training across its commercial practice
+                  groups.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2011 - 2015</dt>
+              <dd>
+                <span class="font-semibold text-ink">Co-Founder, Fitfix</span>
+                <span class="block text-ink/70"
+                  >B2B health-tech start-up - building it from seed funding
+                  through to asset sale.</span
+                >
+              </dd>
+            </div>
+            <div class="grid gap-x-6 gap-y-1 sm:grid-cols-[7rem_1fr]">
+              <dt class="label pt-1">2008 - 2011</dt>
+              <dd>
+                <span class="font-semibold text-ink"
+                  >Co-Founder, Varsity Events</span
+                >
+                <span class="block text-ink/70"
+                  >Events start-up - scaling it to a team of 30-plus.</span
+                >
+              </dd>
+            </div>
+          </dl>
 
           <h2>What I care about</h2>
           <p>
@@ -72,7 +161,7 @@ import { site } from "@/config/site";
         <div class="overflow-hidden rounded-xl border border-hairline bg-paper">
           <img
             src={site.headshot}
-            alt={`${site.name} - ${site.jobTitle} at ${site.company.name}`}
+            alt={`Dominic "Dom" Conte - ${site.jobTitle} at ${site.company.name}`}
             width="640"
             height="800"
             class="aspect-[4/5] w-full object-cover"

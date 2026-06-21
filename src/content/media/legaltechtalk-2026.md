@@ -4,7 +4,7 @@ outlet: "LegalTechTalk"
 logo: "/logos/legaltechtalk.png"
 kind: "Talk"
 date: 2026-06-17
-url: "https://legaltechtalk.com/"
+url: "https://www.legaltech-talk.com"
 description: "A LegalTechTalk session on how CMS ran a firm-wide accelerator that took 400+ ideas to funded products with working prototypes in about three months, and why owning your IP - rather than feeding expertise into a vendor's tool - is the whole game for AI-native firms."
 draft: false
 ---
