@@ -6,7 +6,7 @@ status: "Live"
 tags: ["React", "Firebase", "iOS", "Android"]
 appStore: "https://apps.apple.com/us/app/limelight-mt/id6762212482"
 playStore: "https://play.google.com/store/apps/details?id=com.limelight.mil.app"
-github: "https://github.com/hawksight12/limelight"
+github: "https://github.com/dominicconte/limelight"
 order: 1
 featured: true
 draft: false

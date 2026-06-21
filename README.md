@@ -123,11 +123,11 @@ Point the apex domain at GitHub's servers:
 | AAAA  | @    | `2606:50c0:8001::153`              |
 | AAAA  | @    | `2606:50c0:8002::153`              |
 | AAAA  | @    | `2606:50c0:8003::153`              |
-| CNAME | www  | `<your-github-username>.github.io` |
+| CNAME | www  | `dominicconte.github.io` |
 
 DNS can take up to ~24 hours to propagate (usually much less).
 
-> **Note on the GitHub username.** Your brand plan prefers `dominicconte`. With a custom domain the username is largely invisible, so this is optional - you can keep your current account and rename it later under **Settings → Account → Change username** (GitHub forwards old links). If you do rename, update the `www` CNAME above and the GitHub URL in `src/config/site.ts`.
+> **GitHub username.** The account is `dominicconte` (renamed from `hawksight12`, per the brand plan). If your `www` CNAME still points at `hawksight12.github.io`, update it to `dominicconte.github.io` - leaving it on the old name is a subdomain-takeover risk once that username is free to claim.
 
 ### After it's live
 
