@@ -26,3 +26,6 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# private working docs (personal brand/search strategy - not for the public repo)
+docs/brand-strategy.md
