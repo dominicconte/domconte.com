@@ -43,19 +43,20 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/dominicconte/",
     x: "https://x.com/dominic_conte",
     github: "https://github.com/dominicconte",
+    crunchbase: "https://www.crunchbase.com/person/dominic-conte",
   },
   // Pending profiles - add the real URLs here once the profiles exist, then add
   // them to the `sameAs` array and the footer below.
-  //   crunchbase: "https://www.crunchbase.com/person/<your-slug>",
-  //   muckrack:   "https://muckrack.com/<your-slug>",
+  //   muckrack: "https://muckrack.com/<your-slug>",
 } as const;
 
-// Profiles included in the Person schema `sameAs` array. Add Crunchbase /
-// Muck Rack here once they're claimed and you have the real URLs.
+// Profiles included in the Person schema `sameAs` array. Add Muck Rack here
+// once it's claimed and you have the real URL.
 export const sameAs: string[] = [
   site.socials.linkedin,
   site.socials.x,
   site.socials.github,
+  site.socials.crunchbase,
   site.company.url,
 ];
 
