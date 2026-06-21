@@ -45,7 +45,7 @@ src/
     projects/ *.md        # legal-AI project case studies
     labs/     *.md        # Limelight Labs - personal apps outside law
     media/    *.md        # press / podcast entries
-  pages/                 # routes (index, about, writing, speaking, work, labs, projects, media, contact, 404)
+  pages/                 # routes (index, about, writing, work, labs, projects, media, contact, 404)
   styles/global.css      # base styles, fonts, prose, grain, motion
 public/                  # static assets (CNAME, robots.txt, favicon, images)
 .github/workflows/deploy.yml  # auto-deploy to GitHub Pages on push to main
@@ -89,12 +89,11 @@ A few things still need your real details:
 3. **Social card / favicon** - regenerate any time with `node scripts/generate-assets.mjs` (produces `og-image.png`, favicon and app icons). Edit that script to tweak the design.
 4. **Bio** - refine the bio in `src/pages/about.astro` in your own words.
 5. **Sample content** - the articles and legal-AI projects are solid first drafts; replace or extend them. The Labs entries (`src/content/labs/`) are real and ready.
-6. **Media URLs** - add the real article/episode links in `src/content/media/` (the Legal Innovation Spotlight URL is a placeholder).
-7. **Proof strip / speaking** - update the credibility points and talks as your record grows (`src/components/ProofStrip.astro`, `src/pages/speaking.astro`).
+6. **Media & speaking** - add appearances as Markdown files in `src/content/media/` (they show on the combined Media & Speaking page and the home "As featured in" strip). Speaking topics live in `src/pages/media.astro`.
 
 ### Person schema (`sameAs`)
 
-The `sameAs` URLs in `src/config/site.ts` tell Google that your LinkedIn, X, Crunchbase, Muck Rack and GitHub profiles are all the same person (you). Use your **real, exact** profile URLs - this is the core of the entity / knowledge-panel strategy.
+The `sameAs` URLs in `src/config/site.ts` tell Google that your LinkedIn, X, Crunchbase and GitHub profiles are all the same person (you). Use your **real, exact** profile URLs - this is the core of the entity strategy.
 
 ---
 
