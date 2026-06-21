@@ -36,24 +36,26 @@ export const site = {
   email: "dom@limelightlabs.co.uk",
 
   // --- Social / sameAs (powers Person schema + footer links) ------------
-  // TODO: replace placeholder slugs with your real profile URLs. These exact
-  // URLs are what tell Google all these profiles are one entity (you).
+  // These exact URLs tell Google all these profiles are one entity (you).
+  // Only include profiles that actually exist - a sameAs link to a missing
+  // page is a wasted signal. Confirmed live profiles:
   socials: {
     linkedin: "https://www.linkedin.com/in/dominicconte/",
     x: "https://x.com/dominic_conte",
-    github: "https://github.com/dominicconte", // TODO: confirm final username.
-    crunchbase: "https://www.crunchbase.com/person/dom-conte", // TODO: real slug.
-    muckrack: "https://muckrack.com/dom-conte", // TODO: real slug once claimed.
+    github: "https://github.com/dominicconte",
   },
+  // Pending profiles - add the real URLs here once the profiles exist, then add
+  // them to the `sameAs` array and the footer below.
+  //   crunchbase: "https://www.crunchbase.com/person/<your-slug>",
+  //   muckrack:   "https://muckrack.com/<your-slug>",
 } as const;
 
-// Profiles included in the Person schema `sameAs` array.
+// Profiles included in the Person schema `sameAs` array. Add Crunchbase /
+// Muck Rack here once they're claimed and you have the real URLs.
 export const sameAs: string[] = [
   site.socials.linkedin,
   site.socials.x,
   site.socials.github,
-  site.socials.crunchbase,
-  site.socials.muckrack,
   site.company.url,
 ];
 
