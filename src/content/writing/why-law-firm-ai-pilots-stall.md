@@ -7,8 +7,6 @@ featured: true
 draft: false
 ---
 
-> Draft copy for review. This is a sample flagship article written from the brand strategy's content pillars - replace or refine before publishing.
-
 Every firm I speak to has run an AI pilot. Very few can tell me what happened next. The demo lands, a partner is impressed, a small group gets access for ninety days - and then the thing quietly evaporates. No decision to kill it, no decision to scale it. It just stops being talked about.
 
 After watching this pattern repeat across firms of very different sizes, I've stopped believing it's a technology problem. The models are good enough. The pilots stall for reasons that have almost nothing to do with the AI itself.

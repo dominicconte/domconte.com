@@ -4,9 +4,9 @@ import PageHeader from "@/components/PageHeader.astro";
 import { site } from "@/config/site";
 
 const channels = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "LinkedIn", value: "Connect", href: site.socials.linkedin },
   { label: "X", value: "@dominic_conte", href: site.socials.x },
+  { label: "GitHub", value: "Code", href: site.socials.github },
 ];
 ---
 
@@ -18,66 +18,36 @@ const channels = [
   <PageHeader
     eyebrow="Contact"
     title="Get in touch."
-    lead="Speaking invitations, collaborations, press, or a question about legal AI - whatever it is, the quickest way to reach me is below."
+    lead="Speaking invitations, collaborations, press, or a question about legal AI - the best way to reach me is by email."
   />
 
   <section class="container-content py-16">
     <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-      <!-- Form -->
-      <div>
-        <form
-          action={`https://formspree.io/f/${site.formspreeId}`}
-          method="POST"
-          class="reveal space-y-6"
+      <!-- Email -->
+      <div class="reveal">
+        <p class="label mb-3">Email me</p>
+        <a
+          href={`mailto:${site.email}`}
+          class="font-serif text-3xl text-ink no-underline hover:text-forest sm:text-4xl"
         >
-          <div>
-            <label for="name" class="label mb-2 block">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              autocomplete="name"
-              class="w-full rounded-md border border-hairline bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-forest"
-            />
-          </div>
-          <div>
-            <label for="email" class="label mb-2 block">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              autocomplete="email"
-              class="w-full rounded-md border border-hairline bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-forest"
-            />
-          </div>
-          <div>
-            <label for="message" class="label mb-2 block">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              required
-              class="w-full rounded-md border border-hairline bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-forest"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="rounded-full bg-forest px-7 py-3 font-sans text-sm text-parchment transition-transform hover:-translate-y-0.5"
-          >
-            Send message
-          </button>
-          <p class="font-mono text-xs text-stone">
-            This form posts via Formspree. Replace the form ID in
-            <code>src/config/site.ts</code> with your own before going live.
-          </p>
-        </form>
+          {site.email}
+        </a>
+        <p class="mt-6 max-w-md leading-relaxed text-stone">
+          I read everything, and aim to reply within a few working days. If it's
+          a speaking enquiry, a quick note on your audience and what you'd like
+          them to take away is always helpful.
+        </p>
+        <a
+          href={`mailto:${site.email}`}
+          class="mt-8 inline-flex rounded-full bg-forest px-7 py-3 font-sans text-sm text-parchment no-underline transition-transform hover:-translate-y-0.5 hover:text-parchment"
+        >
+          Send an email
+        </a>
       </div>
 
-      <!-- Direct channels -->
-      <aside>
-        <p class="label mb-5">Or reach me directly</p>
+      <!-- Elsewhere -->
+      <aside class="reveal">
+        <p class="label mb-5">Or find me elsewhere</p>
         <ul class="space-y-5">
           {
             channels.map((c) => (
@@ -86,7 +56,7 @@ const channels = [
                 <a
                   href={c.href}
                   rel="me noopener"
-                  target={c.href.startsWith("mailto") ? undefined : "_blank"}
+                  target="_blank"
                   class="text-lg"
                 >
                   {c.value}
@@ -96,8 +66,7 @@ const channels = [
           }
         </ul>
         <p class="mt-8 text-sm leading-relaxed text-stone">
-          Based in {site.location}. I read everything, and aim to reply within a
-          few working days.
+          Based in {site.location}.
         </p>
       </aside>
     </div>

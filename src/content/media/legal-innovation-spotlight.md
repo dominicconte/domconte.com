@@ -7,5 +7,3 @@ url: "https://www.example.com/legal-innovation-spotlight"
 description: "On what actually moves the needle on AI adoption inside law firms."
 draft: false
 ---
-
-Placeholder entry - replace the URL with the real episode link.

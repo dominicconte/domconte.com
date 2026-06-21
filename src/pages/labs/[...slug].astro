@@ -1,0 +1,88 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const labs = await getCollection("labs", ({ data }) => !data.draft);
+  return labs.map((lab) => ({
+    params: { slug: lab.slug },
+    props: { lab },
+  }));
+}
+
+type Props = { lab: CollectionEntry<"labs"> };
+const { lab } = Astro.props;
+const { Content } = await lab.render();
+const {
+  title,
+  summary,
+  year,
+  status,
+  tags,
+  link,
+  appStore,
+  playStore,
+  github,
+} = lab.data;
+
+const links = [
+  { label: "Visit", href: link },
+  { label: "App Store", href: appStore },
+  { label: "Google Play", href: playStore },
+  { label: "GitHub", href: github },
+].filter((l) => l.href);
+---
+
+<BaseLayout title={title} description={summary} path={`/labs/${lab.slug}/`}>
+  <article class="container-content pt-16 sm:pt-24">
+    <div class="mx-auto max-w-prose">
+      <a
+        href="/labs/"
+        class="font-sans text-sm text-stone no-underline hover:text-ink"
+      >
+        &larr; Limelight Labs
+      </a>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="label">{year}</span>
+        {status && <span class="label text-forest">{status}</span>}
+      </div>
+
+      <h1 class="mt-4 text-display-sm">{title}</h1>
+      <p class="mt-5 text-xl leading-relaxed text-stone">{summary}</p>
+
+      {
+        tags.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <li class="rounded-full border border-hairline px-3 py-1 font-mono text-xs uppercase tracking-wide text-stone">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      {
+        links.length > 0 && (
+          <div class="mt-7 flex flex-wrap gap-4">
+            {links.map((l) => (
+              <a
+                href={l.href}
+                rel="noopener"
+                target="_blank"
+                class="inline-flex items-center gap-1 rounded-full border border-hairline px-5 py-2.5 font-sans text-sm no-underline transition-colors hover:border-forest"
+              >
+                {l.label} <span aria-hidden="true">&rarr;</span>
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="prose-editorial mx-auto mt-12">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

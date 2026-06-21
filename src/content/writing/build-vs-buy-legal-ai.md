@@ -7,8 +7,6 @@ featured: true
 draft: false
 ---
 
-> Draft copy for review. This is a sample flagship article written from the brand strategy's content pillars - replace or refine before publishing.
-
 "Should we build this ourselves?" is the question I get asked most often, and it's almost always asked too early. Build versus buy is a real decision, but it's the second decision. The first is whether the problem is worth solving at all.
 
 Assuming it is, here is the framework I use.

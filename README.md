@@ -42,9 +42,10 @@ src/
   content/
     config.ts            # typed frontmatter schemas (Zod)
     writing/  *.md        # articles - add a file to publish
-    projects/ *.md        # project case studies
+    projects/ *.md        # legal-AI project case studies
+    labs/     *.md        # Limelight Labs - personal apps outside law
     media/    *.md        # press / podcast entries
-  pages/                 # routes (index, about, writing, speaking, work, projects, media, contact, 404)
+  pages/                 # routes (index, about, writing, speaking, work, labs, projects, media, contact, 404)
   styles/global.css      # base styles, fonts, prose, grain, motion
 public/                  # static assets (CNAME, robots.txt, favicon, images)
 .github/workflows/deploy.yml  # auto-deploy to GitHub Pages on push to main
@@ -81,15 +82,15 @@ Same idea - drop a Markdown file into `src/content/projects/` or `src/content/me
 
 ## >>> Customise this <<< (before launch)
 
-Everything you need is flagged in code with `CUSTOMISE THIS` / `TODO`. The essentials:
+A few things still need your real details:
 
-1. **`src/config/site.ts`** - your email, real social/profile URLs (`socials` + the `sameAs` array that powers the Person schema), and your **Formspree form ID** for the contact form.
-2. **Headshot** - replace `public/dom-conte.svg` with a real photo (`public/dom-conte.jpg`) and point `headshot` in the config back to `/dom-conte.jpg`.
-3. **Social card** - replace `public/og-image.svg` with a 1200×630 PNG (`og-image.png`) and update `ogImage` in the config. Most platforms don't render SVG cards.
-4. **Bio** - rewrite the draft bio in `src/pages/about.astro` in your own words.
-5. **Sample content** - the two articles, three projects, and two media entries are clearly-marked drafts. Replace or refine them.
-6. **Proof strip / speaking / work** - update the placeholder credibility points, talks and outcomes (`src/components/ProofStrip.astro`, `src/pages/speaking.astro`, `src/pages/work.astro`).
-7. **Contact form** - create a free form at [formspree.io](https://formspree.io), then paste its ID into `formspreeId` in the config.
+1. **`src/config/site.ts`** - your real social/profile URLs (`socials` + the `sameAs` array that powers the Person schema). The contact email (`dom@limelightlabs.co.uk`) is already set here.
+2. **Headshot** - overwrite `public/dom-conte.jpg` with your real photo (keep the same filename; a portrait around 640×800 or larger works well). The current file is a "drop your photo here" placeholder.
+3. **Social card / favicon** - regenerate any time with `node scripts/generate-assets.mjs` (produces `og-image.png`, favicon and app icons). Edit that script to tweak the design.
+4. **Bio** - refine the bio in `src/pages/about.astro` in your own words.
+5. **Sample content** - the articles and legal-AI projects are solid first drafts; replace or extend them. The Labs entries (`src/content/labs/`) are real and ready.
+6. **Media URLs** - add the real article/episode links in `src/content/media/` (the Legal Innovation Spotlight URL is a placeholder).
+7. **Proof strip / speaking** - update the credibility points and talks as your record grows (`src/components/ProofStrip.astro`, `src/pages/speaking.astro`).
 
 ### Person schema (`sameAs`)
 

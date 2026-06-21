@@ -25,19 +25,15 @@ export const site = {
   },
   // Canonical production URL (no trailing slash).
   url: "https://domconte.com",
-  // Default social-share image (in /public). TODO: replace og-image.svg with a
-  // real 1200x630 PNG (og-image.png) - most platforms don't render SVG cards.
-  ogImage: "/og-image.svg",
-  // Headshot (in /public). TODO: replace dom-conte.svg with a real photo.
-  headshot: "/dom-conte.svg",
+  // Default social-share image (in /public), 1200x630 PNG.
+  ogImage: "/og-image.png",
+  // Headshot (in /public). Save your photo here as dom-conte.jpg.
+  headshot: "/dom-conte.jpg",
   locale: "en_GB",
   location: "London, UK",
 
   // --- Contact ----------------------------------------------------------
-  email: "hello@domconte.com", // TODO: confirm the address you want public.
-  // Formspree endpoint for the static contact form. Create a free form at
-  // https://formspree.io and paste its ID here (the bit after /f/).
-  formspreeId: "your-form-id", // TODO: replace with your Formspree form ID.
+  email: "dom@limelightlabs.co.uk",
 
   // --- Social / sameAs (powers Person schema + footer links) ------------
   // TODO: replace placeholder slugs with your real profile URLs. These exact
@@ -61,12 +57,13 @@ export const sameAs: string[] = [
   site.company.url,
 ];
 
-// Primary navigation (kept to 4-5 items + a CTA, per the design plan).
+// Primary navigation.
 export const nav: { label: string; href: string }[] = [
   { label: "About", href: "/about/" },
   { label: "Writing", href: "/writing/" },
   { label: "Speaking", href: "/speaking/" },
   { label: "Work", href: "/work/" },
+  { label: "Labs", href: "/labs/" },
 ];
 
 // Secondary links shown in the footer.

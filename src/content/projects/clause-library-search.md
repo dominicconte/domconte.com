@@ -9,8 +9,6 @@ featured: true
 draft: false
 ---
 
-> Draft project case study for review - replace with a real project before publishing.
-
 ## The problem
 
 Every firm sits on thousands of well-drafted clauses, and almost no one can find the right one quickly. Keyword search misses anything phrased differently, so people redraft from memory and the precedent bank slowly stops being used.

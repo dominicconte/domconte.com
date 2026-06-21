@@ -9,8 +9,6 @@ featured: false
 draft: false
 ---
 
-> Draft project case study for review - replace with a real project before publishing.
-
 ## The problem
 
 Firms invest in AI tools and then have no idea whether anyone uses them. "We rolled it out" is not the same as "it changed how people work", and without visibility, stalled adoption looks identical to success right up until renewal.

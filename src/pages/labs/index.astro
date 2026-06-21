@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+const labs = (await getCollection("labs", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Labs"
+  description="Limelight Labs - the apps and side projects Dom Conte builds for fun, outside the world of law. From a performing-arts platform to AI experiments."
+  path="/labs/"
+>
+  <PageHeader
+    eyebrow="Limelight Labs"
+    title="What I build for fun."
+    lead="Law pays the bills, but I build things in the evenings too. Limelight Labs is my workshop - apps and experiments with no agenda beyond curiosity and the joy of shipping. Some live, some half-finished, all mine."
+  />
+
+  <section class="container-content py-16">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        labs.map((lab) => (
+          <ProjectCard
+            href={`/labs/${lab.slug}/`}
+            title={lab.data.title}
+            summary={lab.data.summary}
+            tags={lab.data.tags}
+            year={lab.data.year}
+            status={lab.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

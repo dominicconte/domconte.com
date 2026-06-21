@@ -9,8 +9,6 @@ featured: true
 draft: false
 ---
 
-> Draft project case study for review - replace with a real project before publishing.
-
 ## The problem
 
 New matter intake is slow, inconsistent and full of re-keying. A single enquiry can pass through three people before it becomes a usable file, and the structured data that downstream systems need is often captured last, badly, or not at all.

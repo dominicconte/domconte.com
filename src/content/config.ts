@@ -44,6 +44,25 @@ const projects = defineCollection({
   }),
 });
 
+const labs = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    year: z.number(),
+    status: z.enum(["Live", "In progress", "Prototype", "Archived"]).optional(),
+    tags: z.array(z.string()).default([]),
+    // Optional external links shown on the card and detail page.
+    link: z.string().url().optional(),
+    appStore: z.string().url().optional(),
+    playStore: z.string().url().optional(),
+    github: z.string().url().optional(),
+    order: z.number().default(99),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
 const media = defineCollection({
   type: "content",
   schema: z.object({
@@ -58,4 +77,4 @@ const media = defineCollection({
   }),
 });
 
-export const collections = { writing, projects, media };
+export const collections = { writing, projects, labs, media };
