@@ -1,6 +1,7 @@
 ---
 title: "Dom Conte profile"
 outlet: "The Lawyer"
+logo: "/logos/the-lawyer.png"
 kind: "Feature"
 date: 2025-11-10
 url: "https://www.thelawyer.com/microeventpeople/dom-conte/"

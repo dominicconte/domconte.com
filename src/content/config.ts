@@ -29,21 +29,6 @@ const writing = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    year: z.number(),
-    status: z.enum(["Live", "In progress", "Prototype", "Archived"]).optional(),
-    tags: z.array(z.string()).default([]),
-    link: z.string().url().optional(),
-    order: z.number().default(99),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
-  }),
-});
-
 const labs = defineCollection({
   type: "content",
   schema: z.object({
@@ -68,6 +53,8 @@ const media = defineCollection({
   schema: z.object({
     title: z.string(),
     outlet: z.string(),
+    // Optional outlet logo (path under /public) for the "As featured in" strip.
+    logo: z.string().optional(),
     // "Podcast", "Feature", "Interview", "Panel", etc.
     kind: z.string(),
     date: z.coerce.date(),
@@ -77,4 +64,4 @@ const media = defineCollection({
   }),
 });
 
-export const collections = { writing, projects, labs, media };
+export const collections = { writing, labs, media };

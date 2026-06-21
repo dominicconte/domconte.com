@@ -2,6 +2,7 @@
 /**
  * "As featured in" press strip for the home page. Pulls the outlets straight
  * from the media collection, so it stays in sync as you add appearances.
+ * Each outlet shows its logo where one is set, falling back to the name.
  */
 import { getCollection } from "astro:content";
 
@@ -9,20 +10,43 @@ const items = (await getCollection("media", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
-// Unique outlet names, most recent first.
-const outlets = [...new Set(items.map((i) => i.data.outlet))];
+// Unique outlets, most recent first, keeping the first logo we see for each.
+const outlets = items.reduce<{ name: string; logo?: string }[]>((acc, i) => {
+  if (!acc.some((o) => o.name === i.data.outlet)) {
+    acc.push({ name: i.data.outlet, logo: i.data.logo });
+  }
+  return acc;
+}, []);
+
+// Standalone logos (affiliations etc.) that aren't backed by a media entry.
+const extraLogos: { name: string; logo: string }[] = [
+  { name: "University of Cambridge", logo: "/logos/cambridge.png" },
+];
+
+const logos = [...outlets, ...extraLogos];
 ---
 
 {
   outlets.length > 0 && (
     <a href="/media/" class="reveal block rule py-8 no-underline group">
-      <p class="label mb-5 text-center">As featured in</p>
-      <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center">
-        {outlets.map((outlet) => (
-          <li class="font-serif text-base text-ink/70 transition-colors group-hover:text-ink sm:text-lg">
-            {outlet}
-          </li>
-        ))}
+      <p class="label mb-6 text-center">As featured in</p>
+      <ul class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 text-center">
+        {logos.map((outlet) =>
+          outlet.logo ? (
+            <li>
+              <img
+                src={outlet.logo}
+                alt={outlet.name}
+                loading="lazy"
+                class="h-7 w-auto opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 sm:h-8"
+              />
+            </li>
+          ) : (
+            <li class="font-serif text-base text-ink/70 transition-colors group-hover:text-ink sm:text-lg">
+              {outlet.name}
+            </li>
+          ),
+        )}
       </ul>
     </a>
   )

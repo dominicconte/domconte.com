@@ -13,8 +13,8 @@ const posts = (await getCollection("writing", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const projects = (
-  await getCollection("projects", ({ data }) => !data.draft && data.featured)
+const featuredLabs = (
+  await getCollection("labs", ({ data }) => !data.draft && data.featured)
 )
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
@@ -97,24 +97,24 @@ const headlineWords = "I build AI that lawyers actually use.".split(" ");
     </div>
   </section>
 
-  <!-- Featured projects -->
+  <!-- Featured labs -->
   <section class="container-content py-12 sm:py-16">
     <SectionHeading
-      eyebrow="Projects"
-      title="Things I'm building"
-      href="/projects/"
-      hrefLabel="All projects"
+      eyebrow="Labs"
+      title="What I build for fun"
+      href="/labs/"
+      hrefLabel="All of Labs"
     />
     <div class="mt-10 grid gap-6 md:grid-cols-3">
       {
-        projects.map((project) => (
+        featuredLabs.map((lab) => (
           <ProjectCard
-            href={`/projects/${project.slug}/`}
-            title={project.data.title}
-            summary={project.data.summary}
-            tags={project.data.tags}
-            year={project.data.year}
-            status={project.data.status}
+            href={`/labs/${lab.slug}/`}
+            title={lab.data.title}
+            summary={lab.data.summary}
+            tags={lab.data.tags}
+            year={lab.data.year}
+            status={lab.data.status}
           />
         ))
       }

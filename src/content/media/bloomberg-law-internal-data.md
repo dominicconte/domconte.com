@@ -1,6 +1,7 @@
 ---
 title: "Law Firms Capitalize on Internal Data to Stand Out in AI Age"
 outlet: "Bloomberg Law"
+logo: "/logos/bloomberg-law.svg"
 kind: "Feature"
 date: 2026-06-08
 url: "https://news.bloomberglaw.com/legal-ops-and-tech/law-firms-capitalize-on-internal-data-to-stand-out-in-ai-age"

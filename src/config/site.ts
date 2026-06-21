@@ -71,6 +71,5 @@ export const nav: { label: string; href: string }[] = [
 
 // Secondary links shown in the footer.
 export const footerNav: { label: string; href: string }[] = [
-  { label: "Projects", href: "/projects/" },
   { label: "Contact", href: "/contact/" },
 ];
