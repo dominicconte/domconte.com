@@ -64,7 +64,7 @@ export const sameAs: string[] = [
 export const nav: { label: string; href: string }[] = [
   { label: "About", href: "/about/" },
   { label: "Writing", href: "/writing/" },
-  { label: "Speaking", href: "/speaking/" },
+  { label: "Media & Speaking", href: "/media/" },
   { label: "Work", href: "/work/" },
   { label: "Labs", href: "/labs/" },
 ];
@@ -72,6 +72,5 @@ export const nav: { label: string; href: string }[] = [
 // Secondary links shown in the footer.
 export const footerNav: { label: string; href: string }[] = [
   { label: "Projects", href: "/projects/" },
-  { label: "Media", href: "/media/" },
   { label: "Contact", href: "/contact/" },
 ];

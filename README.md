@@ -113,16 +113,16 @@ The repo auto-builds and deploys on every push to `main` via `.github/workflows/
 
 Point the apex domain at GitHub's servers:
 
-| Type  | Host | Value                              |
-| ----- | ---- | ---------------------------------- |
-| A     | @    | `185.199.108.153`                  |
-| A     | @    | `185.199.109.153`                  |
-| A     | @    | `185.199.110.153`                  |
-| A     | @    | `185.199.111.153`                  |
-| AAAA  | @    | `2606:50c0:8000::153`              |
-| AAAA  | @    | `2606:50c0:8001::153`              |
-| AAAA  | @    | `2606:50c0:8002::153`              |
-| AAAA  | @    | `2606:50c0:8003::153`              |
+| Type  | Host | Value                    |
+| ----- | ---- | ------------------------ |
+| A     | @    | `185.199.108.153`        |
+| A     | @    | `185.199.109.153`        |
+| A     | @    | `185.199.110.153`        |
+| A     | @    | `185.199.111.153`        |
+| AAAA  | @    | `2606:50c0:8000::153`    |
+| AAAA  | @    | `2606:50c0:8001::153`    |
+| AAAA  | @    | `2606:50c0:8002::153`    |
+| AAAA  | @    | `2606:50c0:8003::153`    |
 | CNAME | www  | `dominicconte.github.io` |
 
 DNS can take up to ~24 hours to propagate (usually much less).

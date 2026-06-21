@@ -2,63 +2,132 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
+import CallToAction from "@/components/CallToAction.astro";
 import { formatDate } from "@/utils/format";
 
 const items = (await getCollection("media", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+// Tailor the action verb to the type of appearance.
+const actionFor = (kind: string) => {
+  const k = kind.toLowerCase();
+  if (k.includes("podcast")) return "Listen";
+  if (k.includes("talk") || k.includes("panel")) return "Watch";
+  return "Read";
+};
+
+// Topics for the speaking half of the page.
+const topics = [
+  {
+    title: "Making AI adoption stick in law firms",
+    body: "Why most pilots stall, and the unglamorous work that separates the ones that scale.",
+  },
+  {
+    title: "Lawyer to founder",
+    body: "What practising law taught me about building software that fee-earners actually use.",
+  },
+  {
+    title: "Build vs buy for legal AI",
+    body: "A practical decision framework for general counsel and managing partners.",
+  },
+  {
+    title: "Innovation that changes behaviour",
+    body: "Moving beyond innovation theatre to the things that genuinely shift how firms work.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Media & Press"
-  description="Press features, podcast appearances and interviews with Dom Conte on legal AI and innovation."
+  title="Media & Speaking"
+  description="Press features, podcasts, interviews and talks featuring Dom Conte - from Bloomberg Law and The Lawyer to Artificial Lawyer and the Legal Innovation Spotlight - plus speaking topics and how to invite him to your event."
   path="/media/"
 >
   <PageHeader
-    eyebrow="Media & Press"
-    title="Features, podcasts and interviews."
-    lead="Where I've appeared in the legal and tech press. Each entry links out to the original."
+    eyebrow="Media & Speaking"
+    title="Featured, quoted and on stage."
+    lead="Where my work shows up in the press, on podcasts, and on stage. Each links out to the original."
   />
 
-  <section class="container-content py-16">
-    <ul class="max-w-3xl">
+  <!-- Media appearances - the prominent, lead section -->
+  <section class="container-content py-12 sm:py-16">
+    <p class="label reveal mb-8">Selected appearances</p>
+    <ul>
       {
         items.map((item) => (
-          <li class="reveal border-t border-hairline py-7 first:border-t-0">
+          <li class="reveal border-t border-hairline first:border-t-0">
             <a
               href={item.data.url}
               rel="noopener"
               target="_blank"
-              class="group block no-underline"
+              class="group grid gap-3 py-8 no-underline sm:grid-cols-[1fr_auto] sm:gap-8"
             >
-              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <time class="label" datetime={item.data.date.toISOString()}>
-                  {formatDate(item.data.date)}
-                </time>
-                <span class="label text-forest">{item.data.kind}</span>
+              <div>
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span class="label text-forest">{item.data.kind}</span>
+                  <time class="label" datetime={item.data.date.toISOString()}>
+                    {formatDate(item.data.date)}
+                  </time>
+                </div>
+                <p class="mt-2 font-serif text-2xl text-ink transition-colors group-hover:text-forest sm:text-3xl">
+                  {item.data.outlet}
+                </p>
+                <p class="mt-1 max-w-2xl text-lg text-stone">
+                  {item.data.title}
+                </p>
+                {item.data.description && (
+                  <p class="mt-2 max-w-2xl leading-relaxed text-stone">
+                    {item.data.description}
+                  </p>
+                )}
               </div>
-              <h2 class="mt-2 text-2xl text-ink transition-colors group-hover:text-forest">
-                {item.data.title}
-              </h2>
-              <p class="mt-1 font-serif text-lg text-stone">
-                {item.data.outlet}
-              </p>
-              {item.data.description && (
-                <p class="mt-2 text-stone">{item.data.description}</p>
-              )}
-              <span class="mt-3 inline-flex items-center gap-1 font-sans text-sm text-forest">
-                Read / listen
-                <span
-                  class="transition-transform group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                >
-                  &rarr;
+              <div class="flex items-start sm:items-center">
+                <span class="inline-flex items-center gap-1 font-sans text-sm text-forest">
+                  {actionFor(item.data.kind)}
+                  <span
+                    class="transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
                 </span>
-              </span>
+              </div>
             </a>
           </li>
         ))
       }
     </ul>
   </section>
+
+  <!-- Speaking topics -->
+  <section class="container-content py-12 sm:py-16">
+    <div class="reveal rule pt-12">
+      <p class="label mb-3">Speaking</p>
+      <h2 class="text-3xl sm:text-4xl">What I speak about</h2>
+      <p class="mt-4 max-w-2xl leading-relaxed text-stone">
+        I speak to firms, conferences and teams about what it really takes to
+        put AI to work in a regulated profession - candidly, and without the
+        hype.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {
+        topics.map((t) => (
+          <div class="reveal rounded-lg border border-hairline bg-paper p-7">
+            <h3 class="text-xl text-ink">{t.title}</h3>
+            <p class="mt-2 leading-relaxed text-stone">{t.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction
+    title="Invite me to speak"
+    body="Planning a conference, panel, or internal session on legal AI? Tell me about your audience and what you'd like them to leave with."
+    primaryHref="/contact/"
+    primaryLabel="Check availability"
+    secondaryHref="/writing/"
+    secondaryLabel="Read my writing"
+  />
 </BaseLayout>

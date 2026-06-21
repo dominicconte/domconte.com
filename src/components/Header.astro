@@ -74,11 +74,7 @@ const isActive = (href: string) =>
   >
     <div class="container-content flex flex-col gap-1 py-4">
       {
-        [
-          ...nav,
-          { label: "Projects", href: "/projects/" },
-          { label: "Media", href: "/media/" },
-        ].map((item) => (
+        [...nav, { label: "Projects", href: "/projects/" }].map((item) => (
           <a
             href={item.href}
             class="rounded-md px-2 py-2.5 font-sans text-base text-ink no-underline hover:bg-ink/5"

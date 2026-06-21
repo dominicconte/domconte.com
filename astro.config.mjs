@@ -8,6 +8,10 @@ import sitemap from "@astrojs/sitemap";
 // This is an apex custom domain on GitHub Pages, so no `base` path is needed.
 export default defineConfig({
   site: "https://domconte.com",
+  // Speaking was merged into the Media & Speaking page; keep the old URL alive.
+  redirects: {
+    "/speaking": "/media/",
+  },
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
