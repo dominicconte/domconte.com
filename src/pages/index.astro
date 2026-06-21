@@ -1,0 +1,130 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import ProofStrip from "@/components/ProofStrip.astro";
+import CallToAction from "@/components/CallToAction.astro";
+import { site } from "@/config/site";
+import { readingTime } from "@/utils/format";
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const projects = (
+  await getCollection("projects", ({ data }) => !data.draft && data.featured)
+)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+// Split the headline so we can reveal it word by word.
+const headlineWords = "I build AI that lawyers actually use.".split(" ");
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="container-content pt-20 pb-16 sm:pt-28 sm:pb-24">
+    <p class="label mb-6 animate-fade-up">{site.location} &middot; Legal AI</p>
+    <h1 class="text-display-lg max-w-5xl">
+      {
+        headlineWords.map((word, i) => (
+          <span
+            class="inline-block animate-fade-up"
+            style={`animation-delay:${i * 60}ms`}
+          >
+            {word}&nbsp;
+          </span>
+        ))
+      }
+    </h1>
+    <p
+      class="mt-8 max-w-2xl text-lg leading-relaxed text-stone animate-fade-up sm:text-xl"
+      style="animation-delay:480ms"
+    >
+      {site.positioning} I'm {site.name} - {site.jobTitle.toLowerCase()} at
+      <a href={site.company.url} rel="noopener" target="_blank"
+        >{site.company.name}</a
+      >, and a former real-estate solicitor.
+    </p>
+    <div
+      class="mt-10 flex flex-wrap gap-4 animate-fade-up"
+      style="animation-delay:600ms"
+    >
+      <a
+        href="/about/"
+        class="rounded-full bg-forest px-6 py-3 font-sans text-sm text-parchment no-underline transition-transform hover:-translate-y-0.5 hover:text-parchment"
+      >
+        About me
+      </a>
+      <a
+        href="/writing/"
+        class="rounded-full border border-hairline px-6 py-3 font-sans text-sm text-ink no-underline transition-colors hover:border-ink hover:text-ink"
+      >
+        Read my writing
+      </a>
+    </div>
+  </section>
+
+  <div class="container-content">
+    <ProofStrip />
+  </div>
+
+  <!-- Latest writing -->
+  <section class="container-content py-20 sm:py-24">
+    <SectionHeading
+      eyebrow="Writing"
+      title="Latest thinking"
+      href="/writing/"
+      hrefLabel="All articles"
+    />
+    <div class="mt-10">
+      {
+        posts.map((post) => (
+          <ArticleCard
+            href={`/writing/${post.slug}/`}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.pubDate}
+            pillar={post.data.pillar}
+            readingTime={readingTime(post.body)}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Featured projects -->
+  <section class="container-content py-12 sm:py-16">
+    <SectionHeading
+      eyebrow="Projects"
+      title="Things I'm building"
+      href="/projects/"
+      hrefLabel="All projects"
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            href={`/projects/${project.slug}/`}
+            title={project.data.title}
+            summary={project.data.summary}
+            tags={project.data.tags}
+            year={project.data.year}
+            status={project.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction
+    title="Building with AI in a law firm?"
+    body="I write, speak and advise on what it actually takes to make legal innovation stick. If that's useful to you, let's talk."
+    primaryHref="/contact/"
+    primaryLabel="Get in touch"
+    secondaryHref="/speaking/"
+    secondaryLabel="Invite me to speak"
+  />
+</BaseLayout>

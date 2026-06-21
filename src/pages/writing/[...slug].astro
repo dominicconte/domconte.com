@@ -1,0 +1,82 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
+import { formatDate, readingTime } from "@/utils/format";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<"writing"> };
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, description, pubDate, updatedDate, pillar } = post.data;
+
+// Article JSON-LD for rich results.
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { "@type": "Person", name: site.name, url: site.url },
+  publisher: { "@type": "Person", name: site.name, url: site.url },
+  mainEntityOfPage: new URL(`/writing/${post.slug}/`, site.url).href,
+  image: new URL(site.ogImage, site.url).href,
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={`/writing/${post.slug}/`}
+  type="article"
+  publishedTime={pubDate.toISOString()}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(articleSchema)}
+    is:inline
+  />
+
+  <article class="container-content pt-16 sm:pt-24">
+    <div class="mx-auto max-w-prose">
+      <a
+        href="/writing/"
+        class="font-sans text-sm text-stone no-underline hover:text-ink"
+      >
+        &larr; All writing
+      </a>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <time class="label" datetime={pubDate.toISOString()}
+          >{formatDate(pubDate)}</time
+        >
+        {pillar && <span class="label text-forest">{pillar}</span>}
+        <span class="label">{readingTime(post.body)}</span>
+      </div>
+
+      <h1 class="mt-4 text-display-sm">{title}</h1>
+      <p class="mt-5 text-xl leading-relaxed text-stone">{description}</p>
+    </div>
+
+    <div class="prose-editorial mx-auto mt-12">
+      <Content />
+    </div>
+
+    <div class="mx-auto mt-16 max-w-prose rule pt-8">
+      <p class="font-serif text-xl text-ink">Written by {site.name}</p>
+      <p class="mt-1 text-stone">
+        {site.tagline}
+        <a href="/about/">More about me &rarr;</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+const {
+  title,
+  body,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+} = Astro.props;
+---
+
+<section class="container-content py-20 sm:py-28">
+  <div
+    class="reveal overflow-hidden rounded-2xl bg-forest px-8 py-14 text-parchment sm:px-14 sm:py-20"
+  >
+    <div class="max-w-2xl">
+      <h2 class="text-3xl text-parchment sm:text-4xl">{title}</h2>
+      <p class="mt-4 text-lg leading-relaxed text-parchment/80">{body}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={primaryHref}
+          class="rounded-full bg-parchment px-6 py-3 font-sans text-sm text-forest no-underline transition-transform hover:-translate-y-0.5 hover:text-forest"
+        >
+          {primaryLabel}
+        </a>
+        {
+          secondaryHref && (
+            <a
+              href={secondaryHref}
+              class="rounded-full border border-parchment/40 px-6 py-3 font-sans text-sm text-parchment no-underline transition-colors hover:border-parchment hover:text-parchment"
+            >
+              {secondaryLabel}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

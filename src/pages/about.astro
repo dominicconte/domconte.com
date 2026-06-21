@@ -1,0 +1,128 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CallToAction from "@/components/CallToAction.astro";
+import { site } from "@/config/site";
+---
+
+<BaseLayout
+  title="About"
+  description="Dominic 'Dom' Conte - legal-tech founder, former real-estate solicitor, and co-founder of Purple. The story of moving from practising law to building AI products lawyers actually use."
+  path="/about/"
+>
+  <section class="container-content pt-16 sm:pt-24">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+      <!-- Bio -->
+      <div>
+        <p class="label mb-4">About</p>
+        <h1 class="text-display-sm">From practising law to building it.</h1>
+
+        <div class="prose-editorial mt-10">
+          <p>
+            I'm Dominic "Dom" Conte - a legal-tech founder and former
+            real-estate solicitor. Today I'm {site.jobTitle.toLowerCase()} at
+            <a href={site.company.url} rel="noopener" target="_blank"
+              >{site.company.name}</a
+            >, where we build AI products for law firms, and I write and speak
+            about what it actually takes to make legal innovation stick.
+          </p>
+          <p>
+            I didn't start in technology. I trained and practised as a
+            real-estate solicitor, which is where I learned the thing that still
+            drives the work: the gap between how legal services are sold and how
+            the work actually gets done. Lawyers are surrounded by repetitive,
+            high-stakes tasks that software should have solved years ago - and
+            yet most of the tools aimed at them go unused.
+          </p>
+          <p>
+            That gap is what pulled me out of practice and into building. I
+            wanted to make tools that fee-earners reach for because they're
+            genuinely better, not because they've been told to. Practising law
+            first turned out to be the unfair advantage: I know where the work
+            is painful, where the judgement really lives, and why so many
+            "obvious" products quietly fail to land.
+          </p>
+
+          <h2>What I care about</h2>
+          <p>
+            Adoption over hype. The hard part of legal AI was never the model -
+            it's changing what people actually do on a Tuesday afternoon. I care
+            about narrow, real use cases; keeping a human in the loop where
+            judgement matters; and being honest about what works and what
+            doesn't.
+          </p>
+
+          <h2>Beyond the work</h2>
+          <p>
+            I'm based in {site.location}. When I'm not building, I'm usually
+            writing about legal innovation, on a podcast, or on a stage talking
+            about how regulated professions adopt new technology. If any of that
+            overlaps with what you're working on, I'd love to hear from you.
+          </p>
+
+          <blockquote>
+            The technology is no longer the hard part. The hard part is the same
+            as it has always been in professional services - changing what
+            people actually do.
+          </blockquote>
+
+          <p class="text-sm text-stone">
+            <em
+              >Draft bio for review - replace with your own words and verified
+              detail before publishing.</em
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:pt-16">
+        <div class="overflow-hidden rounded-xl border border-hairline bg-paper">
+          <img
+            src={site.headshot}
+            alt={`${site.name} - ${site.jobTitle} at ${site.company.name}`}
+            width="640"
+            height="800"
+            class="aspect-[4/5] w-full object-cover"
+            loading="eager"
+          />
+        </div>
+
+        <dl class="mt-8 space-y-5">
+          <div>
+            <dt class="label mb-1">Role</dt>
+            <dd class="text-ink">{site.jobTitle}, {site.company.name}</dd>
+          </div>
+          <div>
+            <dt class="label mb-1">Based in</dt>
+            <dd class="text-ink">{site.location}</dd>
+          </div>
+          <div>
+            <dt class="label mb-1">Focus</dt>
+            <dd class="text-ink">Legal AI, product, adoption</dd>
+          </div>
+          <div>
+            <dt class="label mb-2">Find me</dt>
+            <dd class="flex flex-wrap gap-x-4 gap-y-1">
+              <a href={site.socials.linkedin} rel="me noopener" target="_blank"
+                >LinkedIn</a
+              >
+              <a href={site.socials.x} rel="me noopener" target="_blank">X</a>
+              <a href={site.socials.github} rel="me noopener" target="_blank"
+                >GitHub</a
+              >
+            </dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <CallToAction
+    title="Let's talk"
+    body="Whether it's a speaking invitation, a collaboration, or a question about legal AI - my inbox is open."
+    primaryHref="/contact/"
+    primaryLabel="Get in touch"
+    secondaryHref="/writing/"
+    secondaryLabel="Read my writing"
+  />
+</BaseLayout>

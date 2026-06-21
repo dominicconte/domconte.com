@@ -1,0 +1,37 @@
+---
+/**
+ * Person JSON-LD (schema.org). Rendered site-wide in <head>.
+ * Tells Google these profiles are all one entity - the core of the
+ * name-search / knowledge-panel strategy. Uses `alternateName` so the
+ * formal "Dominic Conte" is associated with the same entity as "Dom Conte".
+ */
+import { site, sameAs } from "@/config/site";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  alternateName: site.alternateName,
+  url: site.url,
+  image: new URL(site.headshot, site.url).href,
+  jobTitle: site.jobTitle,
+  description: site.tagline,
+  worksFor: {
+    "@type": "Organization",
+    name: site.company.name,
+    url: site.company.url,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "London",
+    addressCountry: "GB",
+  },
+  sameAs,
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+  is:inline
+/>

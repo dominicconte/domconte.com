@@ -1,0 +1,64 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import { formatDate } from "@/utils/format";
+
+const items = (await getCollection("media", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Media & Press"
+  description="Press features, podcast appearances and interviews with Dom Conte on legal AI and innovation."
+  path="/media/"
+>
+  <PageHeader
+    eyebrow="Media & Press"
+    title="Features, podcasts and interviews."
+    lead="Where I've appeared in the legal and tech press. Each entry links out to the original."
+  />
+
+  <section class="container-content py-16">
+    <ul class="max-w-3xl">
+      {
+        items.map((item) => (
+          <li class="reveal border-t border-hairline py-7 first:border-t-0">
+            <a
+              href={item.data.url}
+              rel="noopener"
+              target="_blank"
+              class="group block no-underline"
+            >
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <time class="label" datetime={item.data.date.toISOString()}>
+                  {formatDate(item.data.date)}
+                </time>
+                <span class="label text-forest">{item.data.kind}</span>
+              </div>
+              <h2 class="mt-2 text-2xl text-ink transition-colors group-hover:text-forest">
+                {item.data.title}
+              </h2>
+              <p class="mt-1 font-serif text-lg text-stone">
+                {item.data.outlet}
+              </p>
+              {item.data.description && (
+                <p class="mt-2 text-stone">{item.data.description}</p>
+              )}
+              <span class="mt-3 inline-flex items-center gap-1 font-sans text-sm text-forest">
+                Read / listen
+                <span
+                  class="transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  &rarr;
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

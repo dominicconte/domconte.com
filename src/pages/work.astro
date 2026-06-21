@@ -1,0 +1,94 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import CallToAction from "@/components/CallToAction.astro";
+import { site } from "@/config/site";
+
+// >>> CUSTOMISE THIS <<< replace with real outcomes / case studies when ready.
+const outcomes = [
+  {
+    stat: "Front-of-process",
+    label: "Where we focus",
+    body: "We target the highest-friction moments in legal work - intake, drafting, knowledge - where AI changes the economics of a real task.",
+  },
+  {
+    stat: "Human-in-the-loop",
+    label: "How we build",
+    body: "Judgement stays with the lawyer. Our tools do the assembly and the searching, not the deciding.",
+  },
+  {
+    stat: "Adoption-first",
+    label: "How we measure",
+    body: "We measure success by whether fee-earners actually reach for the tool - not by whether the demo impressed.",
+  },
+];
+---
+
+<BaseLayout
+  title="Work"
+  description="What Dom Conte does at Purple - building AI products for law firms, the kinds of firms he partners with, and how the work is approached."
+  path="/work/"
+>
+  <PageHeader
+    eyebrow="Work"
+    title="Building AI products for law firms."
+    lead={`I'm ${site.jobTitle.toLowerCase()} at ${site.company.name}, where we build AI tools that help legal teams do their best work - and that they actually use.`}
+  />
+
+  <section class="container-content py-16">
+    <div class="prose-editorial max-w-3xl">
+      <p>
+        <a href={site.company.url} rel="noopener" target="_blank"
+          >{site.company.name}</a
+        > builds AI products for law firms. We work with teams who want more than
+        a demo - who want technology that changes how the work actually gets done,
+        and that stands up to the standards a regulated profession demands.
+      </p>
+      <p>
+        My role spans product, strategy and the unglamorous business of
+        adoption: making sure that what we build crosses the gap from "this is
+        impressive" to "this is now how we work". That's the part most legal AI
+        gets wrong, and it's where I spend most of my time.
+      </p>
+      <p class="text-sm text-stone">
+        <em
+          >Draft overview for review - replace with your verified description of
+          Purple and selected outcomes.</em
+        >
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {
+        outcomes.map((o) => (
+          <div class="reveal rounded-lg border border-hairline bg-paper p-7">
+            <p class="label mb-3">{o.label}</p>
+            <p class="font-serif text-2xl text-forest">{o.stat}</p>
+            <p class="mt-3 leading-relaxed text-stone">{o.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-12">
+      <a
+        href={site.company.url}
+        rel="noopener"
+        target="_blank"
+        class="inline-flex items-center gap-1 font-sans text-sm"
+      >
+        Visit {site.company.name}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <CallToAction
+    title="Partner with us"
+    body="If your firm is serious about putting AI to work - properly, and with adoption that lasts - I'd like to hear what you're trying to do."
+    primaryHref="/contact/"
+    primaryLabel="Start a conversation"
+    secondaryHref="/projects/"
+    secondaryLabel="See my projects"
+  />
+</BaseLayout>

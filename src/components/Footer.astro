@@ -1,0 +1,74 @@
+---
+import { site, nav, footerNav } from "@/config/site";
+
+const year = new Date().getFullYear();
+const social = [
+  { label: "LinkedIn", href: site.socials.linkedin },
+  { label: "X", href: site.socials.x },
+  { label: "GitHub", href: site.socials.github },
+  { label: "Crunchbase", href: site.socials.crunchbase },
+];
+---
+
+<footer class="mt-24 border-t border-hairline bg-parchment">
+  <div class="container-content py-14">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a
+          href="/"
+          class="font-serif text-2xl text-ink no-underline hover:text-ink"
+        >
+          {site.name}
+        </a>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-stone">
+          {site.tagline} Based in {site.location}.
+        </p>
+      </div>
+
+      <div>
+        <p class="label mb-4">Explore</p>
+        <ul class="space-y-2.5">
+          {
+            [...nav, ...footerNav].map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-stone no-underline hover:text-ink"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <p class="label mb-4">Elsewhere</p>
+        <ul class="space-y-2.5">
+          {
+            social.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  rel="me noopener"
+                  target="_blank"
+                  class="text-sm text-stone no-underline hover:text-ink"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-2 border-t border-hairline pt-6 text-xs text-stone sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>&copy; {year} {site.name}. All rights reserved.</p>
+      <p class="font-mono">Built with Astro - hosted on GitHub Pages.</p>
+    </div>
+  </div>
+</footer>

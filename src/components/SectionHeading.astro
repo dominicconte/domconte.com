@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  href?: string;
+  hrefLabel?: string;
+}
+const { eyebrow, title, href, hrefLabel = "View all" } = Astro.props;
+---
+
+<div class="reveal flex items-end justify-between gap-6">
+  <div>
+    {eyebrow && <p class="label mb-3">{eyebrow}</p>}
+    <h2 class="text-3xl sm:text-4xl">{title}</h2>
+  </div>
+  {
+    href && (
+      <a
+        href={href}
+        class="hidden shrink-0 font-sans text-sm text-stone no-underline hover:text-ink sm:inline-flex sm:items-center sm:gap-1"
+      >
+        {hrefLabel}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    )
+  }
+</div>

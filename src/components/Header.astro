@@ -1,0 +1,109 @@
+---
+import { site, nav } from "@/config/site";
+
+const current = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? current === "/" : current.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-hairline bg-parchment/85 backdrop-blur-md"
+>
+  <div class="container-content flex h-16 items-center justify-between gap-4">
+    <a
+      href="/"
+      class="font-serif text-xl tracking-tight text-ink no-underline hover:text-ink"
+      aria-label={`${site.name} - home`}
+    >
+      {site.name}
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "font-sans text-sm no-underline transition-colors",
+              isActive(item.href) ? "text-ink" : "text-stone hover:text-ink",
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contact/"
+        class="rounded-full bg-forest px-4 py-1.5 font-sans text-sm text-parchment no-underline transition-colors hover:bg-forest-hover hover:text-parchment"
+      >
+        Get in touch
+      </a>
+    </nav>
+
+    <!-- Mobile toggle -->
+    <button
+      id="nav-toggle"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        aria-hidden="true"
+      >
+        <line x1="3" y1="7" x2="21" y2="7"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="17" x2="21" y2="17"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <nav
+    id="mobile-nav"
+    class="hidden border-t border-hairline bg-parchment md:hidden"
+    aria-label="Mobile"
+  >
+    <div class="container-content flex flex-col gap-1 py-4">
+      {
+        [
+          ...nav,
+          { label: "Projects", href: "/projects/" },
+          { label: "Media", href: "/media/" },
+        ].map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-2 py-2.5 font-sans text-base text-ink no-underline hover:bg-ink/5"
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contact/"
+        class="mt-2 rounded-full bg-forest px-4 py-2.5 text-center font-sans text-base text-parchment no-underline hover:bg-forest-hover hover:text-parchment"
+      >
+        Get in touch
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const panel = document.getElementById("mobile-nav");
+  toggle?.addEventListener("click", () => {
+    const open = panel?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  });
+</script>

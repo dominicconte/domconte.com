@@ -1,0 +1,25 @@
+---
+/**
+ * Credibility strip - the third-party signals that build trust on first view.
+ * >>> CUSTOMISE THIS <<< update the items to your real, current proof points.
+ */
+const items = [
+  "Co-Founder, Purple",
+  "Featured in The Lawyer",
+  "Legal Innovation Spotlight",
+  "Former real-estate solicitor",
+];
+---
+
+<div class="reveal rule py-8">
+  <p class="label mb-5 text-center">Selected recognition</p>
+  <ul
+    class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center"
+  >
+    {
+      items.map((item) => (
+        <li class="font-serif text-base text-ink/70 sm:text-lg">{item}</li>
+      ))
+    }
+  </ul>
+</div>

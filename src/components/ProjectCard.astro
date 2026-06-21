@@ -1,0 +1,36 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  tags?: string[];
+  year?: number;
+  status?: string;
+}
+const { href, title, summary, tags = [], year, status } = Astro.props;
+---
+
+<a
+  href={href}
+  class="reveal group flex h-full flex-col rounded-lg border border-hairline bg-paper p-7 no-underline transition-all hover:-translate-y-0.5 hover:border-forest/40 hover:shadow-[0_12px_40px_-20px_rgba(31,61,47,0.45)]"
+>
+  <div class="flex items-center justify-between gap-3">
+    {year && <span class="label">{year}</span>}
+    {status && <span class="label text-forest">{status}</span>}
+  </div>
+  <h3 class="mt-4 text-2xl text-ink transition-colors group-hover:text-forest">
+    {title}
+  </h3>
+  <p class="mt-2 flex-1 leading-relaxed text-stone">{summary}</p>
+  {
+    tags.length > 0 && (
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <li class="rounded-full border border-hairline px-2.5 py-0.5 font-mono text-[0.7rem] uppercase tracking-wide text-stone">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</a>

@@ -1,0 +1,62 @@
+---
+/**
+ * Per-page SEO head tags: title, description, canonical, Open Graph, Twitter.
+ * Pass page-specific values from each page; sensible defaults come from site config.
+ */
+import { site } from "@/config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Path-only canonical override, e.g. "/about/". Defaults to current URL. */
+  path?: string;
+  image?: string;
+  /** "website" for pages, "article" for writing posts. */
+  type?: "website" | "article";
+  publishedTime?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = site.positioning,
+  path,
+  image = site.ogImage,
+  type = "website",
+  publishedTime,
+  noindex = false,
+} = Astro.props;
+
+// Full <title>: brand-forward, name first (helps name-search ranking).
+const fullTitle = title
+  ? `${title} - ${site.name}`
+  : `${site.name} - ${site.tagline}`;
+
+const canonicalURL = new URL(path ?? Astro.url.pathname, site.url).href;
+const imageURL = new URL(image, site.url).href;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:locale" content={site.locale} />
+{
+  publishedTime && (
+    <meta property="article:published_time" content={publishedTime} />
+  )
+}
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />

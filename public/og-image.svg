@@ -1,0 +1,11 @@
+<!-- PLACEHOLDER SOCIAL CARD. Most platforms (LinkedIn, X, Slack) do NOT render
+     SVG OG images. Before launch, export a 1200×630 PNG named og-image.png and
+     update `ogImage` in src/config/site.ts to "/og-image.png". -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F7F4EE"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#1F3D2F"/>
+  <text x="80" y="150" font-family="monospace" font-size="22" fill="#6B6660" letter-spacing="6">LEGAL AI · LONDON</text>
+  <text x="78" y="300" font-family="Georgia, serif" font-size="96" fill="#1A1A1A">Dom Conte</text>
+  <text x="80" y="380" font-family="Georgia, serif" font-size="40" fill="#1F3D2F">Legal-tech founder, builder and speaker.</text>
+  <text x="80" y="560" font-family="Georgia, serif" font-size="28" fill="#6B6660">domconte.com</text>
+</svg>

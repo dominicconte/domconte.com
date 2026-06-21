@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import { readingTime } from "@/utils/format";
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Writing"
+  description="Essays on legal AI, building legal tech, and how regulated professions adopt new technology - by Dom Conte."
+  path="/writing/"
+>
+  <PageHeader
+    eyebrow="Writing"
+    title="Essays on legal AI, building, and change."
+    lead="The long-form thinking behind the work - on what makes legal innovation stick, and what quietly makes it fail. A new piece roughly every fortnight."
+  />
+
+  <section class="container-content py-16">
+    <div class="max-w-3xl">
+      {
+        posts.length === 0 ? (
+          <p class="text-stone">No articles published yet - check back soon.</p>
+        ) : (
+          posts.map((post) => (
+            <ArticleCard
+              href={`/writing/${post.slug}/`}
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.pubDate}
+              pillar={post.data.pillar}
+              readingTime={readingTime(post.body)}
+            />
+          ))
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
