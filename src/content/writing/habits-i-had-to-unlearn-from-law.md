@@ -1,7 +1,7 @@
 ---
 title: "The habits I had to unlearn when I left law to build things"
 description: "Legal training gives you real advantages as a founder - and installs instincts that will quietly kill a product company. These are the habits I had to consciously unlearn, and the ones I kept."
-pubDate: 2026-07-21
+pubDate: 2026-07-17
 pillar: "Lawyer-to-founder"
 featured: false
 draft: false
